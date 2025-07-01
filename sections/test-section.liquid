@@ -1,0 +1,59 @@
+{% comment %}
+  This section renders a simple h2 heading.
+  The text can be edited in the Shopify Theme Customizer.
+{% endcomment %}
+
+<div class="page-width">
+  <div class="custom-heading-wrapper">
+    {% if section.settings.heading_text != blank %}
+      <h2 class="custom-heading__title">
+        {{ section.settings.heading_text | escape }}
+      </h2>
+    {% endif %}
+  </div>
+</div>
+
+{% stylesheet %}
+.custom-heading-wrapper {
+  padding: 50px 0;
+  text-align: center;
+}
+
+.custom-heading__title {
+  font-size: 2.5rem; /* 40px */
+  font-weight: 700;
+  margin: 0;
+  line-height: 1.2;
+}
+
+@media screen and (max-width: 750px) {
+  .custom-heading-wrapper {
+    padding: 30px 0;
+  }
+  .custom-heading__title {
+    font-size: 2rem; /* 32px */
+  }
+}
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Custom Heading",
+  "tag": "section",
+  "class": "custom-heading-section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading_text",
+      "label": "Heading",
+      "default": "Your Custom Heading"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Custom Heading",
+      "category": "Text"
+    }
+  ]
+}
+{% endschema %}
