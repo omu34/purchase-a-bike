@@ -4,19 +4,22 @@ const quiz_form = document.querySelector("#quizForm");
 const answers = {};
 
 quiz_form.addEventListener("change", updateAnswers);
+
 function updateAnswers(event) {
-  //code to store answers
+    //code to store answers
 
+    let input = event.target;
+    answers[input.name] = input.value;
 
-
-  console.log("answers: ", answers);
+    // console.log("answers: ", answers);
+    // // console.log("something changed ", event.target);
 }
 
 
-finish_btn.addEventListener("click", function () {
-  if (answers.product_type && answers.bike_type && answers.color) {
-    alert("Here are your answers: " + JSON.stringify(answers));
-  } else {
-    alert("Please answer all the questions!");
-  }
+finish_btn.addEventListener("click", function() {
+    if (answers.product_type && answers.bike_type && answers.color) {
+        alert("Here are your answers: " + JSON.stringify(answers));
+    } else {
+        alert("Please answer all the questions!");
+    }
 });
