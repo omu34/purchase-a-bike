@@ -1,6 +1,4 @@
 //logic for our custom contact form
-
-//logic for our custom contact form
 const businessAccountCheckboxId = 'businessAccount';
 const companyInfoFieldId = 'companyInfo';
 const contactReasonDropdownId = 'contactReason';
