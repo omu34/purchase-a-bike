@@ -1,7 +1,7 @@
 {{ 'section-quiz.css' | asset_url | stylesheet_tag }}
 <script src="{{ 'quiz.js' | asset_url }}" defer="defer"></script>
-  
-<!--
+
+
 <script>
   const questions = [
     {
@@ -32,7 +32,7 @@
     }
   ];
 </script>
--->
+
 
 <div class="quiz page-width">
 
@@ -107,25 +107,35 @@
     </div>
 
   </form>
-  <div id="nav-buttons">
-    <!--
-    <button id="prev-button" class="button previous-btn">← Previous</button>
-    <button id="next-button" class="button next-btn">Next →</button>
-    -->
-    <button id="finish-button" class="button next-btn">Submit</button>
-  </div>
- 
+
+  <div class="container">
+    <div class="navigation-buttons">
+      <button class="button previous-btn" type="button" id="prev-button" disabled> ← Previous</button>
+      <button class="button next-btn" type="button" id="next-button">Next →</button>
+      <button class="button next-btn" type="button" id="finish-button" class="hidden">Submit</button>
+    </div>
+    {% comment %} <pre id="answers_container" class="answers-output"></pre> {% endcomment %}
+  </div> 
+
 </div>
 
+
+
+
+
+
+
+
+
 {% schema %}
-  {
-    "name": "Quiz",
-    "settings": [],
-    "presets": [
-      {
-      "name": "Quiz",
-      "category": "Custom"
-      }
-    ]
-  }
+{
+"name": "Quiz",
+"settings": [],
+"presets": [
+{
+"name": "Quiz",
+"category": "Custom"
+}
+]
+}
 {% endschema %}
