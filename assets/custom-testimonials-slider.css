@@ -1,157 +1,56 @@
-/* ==========================================================================
-   Base Carousel & Layout
-   ========================================================================== */
-
-.custom-testimonials {
-    /* Base styles for the entire component */
-    padding: 37px;
+.testimonial-slider {
+    background: transparent;
+    margin-top: 2rem;
 }
 
-.custom-testimonials .title-wrapper {
+.carousel-cell,
+.testimonial-slide {
+    width: 30%;
+    height: fit-content;
+    margin-right: 16px;
+    background-color: var(--content-background-color, #f9f9f9);
+    border-radius: 12px;
+    padding: 20px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+    transition: transform 0.3s ease;
+}
+
+.carousel-cell:hover {
+    transform: scale(1.01);
+}
+
+
+/* Profile block: center image, name, and stars */
+
+.profile-block {
     text-align: center;
+    margin-top: 1rem;
 }
 
-.custom-testimonials .caption-text {
-    font-size: 12px;
-    font-weight: 600;
-    letter-spacing: 0.4px;
-    line-height: 130%;
-    text-transform: uppercase;
-    margin: 0;
-}
-
-
-/* ==========================================================================
-   Flickity Slider Styles
-   ========================================================================== */
-
-.custom-testimonials .testimonial-slider {
-    /* This is the main Flickity container */
-}
-
-.custom-testimonials .testimonial-slide {
-    display: inline-flex;
-    width: 375px;
-    max-width: 100%;
-    min-height: 80%;
-    margin: 20px 20px 10px 0;
-    /* top, right, bottom, left */
-    border-radius: 1rem;
-}
-
-
-/* Fallback for when JS is disabled: uses Flexbox */
-
-.custom-testimonials slider-component:not(.flickity-enabled) {
-    display: flex;
-    justify-content: flex-start;
-    /* Aligns slides to the left */
-    column-gap: var(--grid-desktop-horizontal-spacing);
-    overflow-x: auto;
-}
-
-.custom-testimonials slider-component:not(.flickity-enabled) .testimonial-slide {
-    margin-right: 0;
-    min-width: 375px;
-}
-
-
-/* Accessibility: Remove outline on focus */
-
-.custom-testimonials .flickity-enabled:focus-visible,
-.custom-testimonials .flickity-enabled .flickity-viewport:focus-visible {
-    outline: none;
-    box-shadow: none;
-}
-
-
-/* ==========================================================================
-   Individual Slide Content Styling
-   ========================================================================== */
-
-.custom-testimonials .content-container {
-    display: flex;
-    flex: 1;
-    flex-direction: column;
-    justify-content: space-between;
-    background: var(--content-background-color);
-    width: 100%;
-}
-
-.custom-testimonials .multicolumn-card__info {
-    padding: 25px;
-    /* Added padding for content spacing */
-    text-align: center;
-    /* Center align the main text content */
-}
-
-.custom-testimonials .multicolumn-card__info h3 {
-    margin: 0 0 10px 0;
-    /* Space below the title */
-}
-
-.custom-testimonials .multicolumn-card__info .rte p {
-    margin: 0;
-}
-
-
-/* ==========================================================================
-   Profile Block (Image, Name, Stars)
-   ========================================================================== */
-
-.custom-testimonials .profile-block {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-    margin: 0 25px 25px;
-    /* top, sides, bottom */
-    padding-top: 15px;
-    /* Space between text and profile */
-    border-top: 1px solid #eee;
-    /* Separator line */
-}
-
-.custom-testimonials .profile-block .profile-image {
-    width: 64px;
-    height: 64px;
+.profile-image {
+    width: 48px;
+    height: 48px;
     border-radius: 50%;
     object-fit: cover;
-    margin-bottom: 15px;
-    /* Space below image */
+    display: block;
+    margin: 0 auto 0.5rem auto;
 }
 
-.custom-testimonials .profile-block .profile-name {
-    font-size: 16px;
-    font-weight: 600;
-    line-height: 1.5;
-    margin: 0 0 5px 0;
-    /* Space below name */
+.profile-name {
+    font-weight: bold;
+    margin-top: 8px;
 }
 
-
-/* ==========================================================================
-   Star Rating
-   ========================================================================== */
-
-.custom-testimonials .star-rating {
-    display: flex;
-    justify-content: center;
-    gap: 2px;
+.star-rating {
+    display: inline-block;
+    margin-top: 0.25rem;
+    color: #ffc107;
 }
 
-.custom-testimonials .star-rating span {
-    color: gold;
-    font-size: 20px;
-    line-height: 1;
+.star {
+    font-size: 1rem;
 }
 
-
-/* ==========================================================================
-   Legacy / Unused Classes (Example)
-   ========================================================================== */
-
-
-/* The styles for .carousel, .carousel-cell, etc., were removed
-   as they did not appear to be used in the provided HTML structure.
-   If they are needed, they can be re-integrated here. */
+.star--half {
+    opacity: 0.5;
+}
