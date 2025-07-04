@@ -1,144 +1,157 @@
-.custom-testimonials slider-component:not(.flickity-enabled) {
-    display: flex;
-    flex-direction: row;
-    column-gap: var(--grid-desktop-horizontal-spacing);
-    justify-content: center;
+/* ==========================================================================
+   Base Carousel & Layout
+   ========================================================================== */
+
+.custom-testimonials {
+    /* Base styles for the entire component */
+    padding: 37px;
 }
 
-.custom-testimonials slider-component:not(.flickity-enabled) .testimonial-slide {
-    margin-right: 0px;
-    min-width: 375px;
+.custom-testimonials .title-wrapper {
+    text-align: center;
+}
+
+.custom-testimonials .caption-text {
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.4px;
+    line-height: 130%;
+    text-transform: uppercase;
+    margin: 0;
+}
+
+
+/* ==========================================================================
+   Flickity Slider Styles
+   ========================================================================== */
+
+.custom-testimonials .testimonial-slider {
+    /* This is the main Flickity container */
 }
 
 .custom-testimonials .testimonial-slide {
     display: inline-flex;
     width: 375px;
     max-width: 100%;
-    min-height: 100%;
-    margin-right: 20px;
-    margin-top: 20px;
-    padding-bottom: 10px;
+    min-height: 80%;
+    margin: 20px 20px 10px 0;
+    /* top, right, bottom, left */
+    border-radius: 1rem;
 }
+
+
+/* Fallback for when JS is disabled: uses Flexbox */
+
+.custom-testimonials slider-component:not(.flickity-enabled) {
+    display: flex;
+    justify-content: flex-start;
+    /* Aligns slides to the left */
+    column-gap: var(--grid-desktop-horizontal-spacing);
+    overflow-x: auto;
+}
+
+.custom-testimonials slider-component:not(.flickity-enabled) .testimonial-slide {
+    margin-right: 0;
+    min-width: 375px;
+}
+
+
+/* Accessibility: Remove outline on focus */
 
 .custom-testimonials .flickity-enabled:focus-visible,
 .custom-testimonials .flickity-enabled .flickity-viewport:focus-visible {
     outline: none;
-    outline-offset: 0;
     box-shadow: none;
 }
 
+
+/* ==========================================================================
+   Individual Slide Content Styling
+   ========================================================================== */
+
 .custom-testimonials .content-container {
-    flex: 1;
     display: flex;
+    flex: 1;
     flex-direction: column;
     justify-content: space-between;
     background: var(--content-background-color);
-    /* border-radius: 5px; */
+    width: 100%;
 }
 
-.custom-testimonials .content-container .multicolumn-card__info h3 {
+.custom-testimonials .multicolumn-card__info {
+    padding: 25px;
+    /* Added padding for content spacing */
+    text-align: center;
+    /* Center align the main text content */
+}
+
+.custom-testimonials .multicolumn-card__info h3 {
+    margin: 0 0 10px 0;
+    /* Space below the title */
+}
+
+.custom-testimonials .multicolumn-card__info .rte p {
     margin: 0;
 }
 
-.custom-testimonials .caption-text {
-    letter-spacing: 0.4px;
-    text-transform: uppercase;
-    font-size: 12px;
-    font-weight: 600;
-    line-height: 130%;
-    margin: 0;
-}
+
+/* ==========================================================================
+   Profile Block (Image, Name, Stars)
+   ========================================================================== */
 
 .custom-testimonials .profile-block {
     display: flex;
     flex-direction: column;
-    /* Changed to column to stack name and rating */
     align-items: center;
-    /* Center items horizontally within the profile block */
-    margin: 0 25px 25px;
     text-align: center;
-    /* Align text within profile block (for name and stars) */
+    margin: 0 25px 25px;
+    /* top, sides, bottom */
+    padding-top: 15px;
+    /* Space between text and profile */
+    border-top: 1px solid #eee;
+    /* Separator line */
 }
 
 .custom-testimonials .profile-block .profile-image {
-    /* Target the image directly using its class */
-    border-radius: 50%;
-    /* Make the image fully rounded */
-    object-fit: cover;
-    /* Ensure the image covers the area without distortion */
     width: 64px;
-    /* Ensure a consistent size */
     height: 64px;
-    /* Ensure a consistent size */
-    margin-bottom: 10px;
-    /* Add some space below the image */
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 15px;
+    /* Space below image */
 }
-
-
-/* Remove profile-img rules if you are using image_tag with class 'profile-image' */
-
-
-/* If you are still using a wrapper around the image, you might need to adjust.
-   Assuming `profile-image` is directly on the `<img>` tag */
 
 .custom-testimonials .profile-block .profile-name {
-    /* Your existing class for the name */
-    margin-top: 0;
-    /* Adjust margin to ensure it's close to the image */
-    margin-bottom: 5px;
-    /* Add space between name and star rating */
     font-size: 16px;
     font-weight: 600;
-    line-height: 150%;
+    line-height: 1.5;
+    margin: 0 0 5px 0;
+    /* Space below name */
 }
 
-.custom-testimonials .profile-block .star-rating {
+
+/* ==========================================================================
+   Star Rating
+   ========================================================================== */
+
+.custom-testimonials .star-rating {
     display: flex;
-    /* Use flexbox for star alignment */
     justify-content: center;
-    /* Center the stars horizontally */
     gap: 2px;
-    /* Small gap between stars */
-    margin-top: 0;
-    /* Ensure no extra space above the stars */
 }
 
-.custom-testimonials .profile-block .star-rating .shopify-product-reviews-badge__stars--full,
-.custom-testimonials .profile-block .star-rating .shopify-product-reviews-badge__stars--half {
+.custom-testimonials .star-rating span {
     color: gold;
-    /* Make the stars golden */
     font-size: 20px;
-    /* Adjust star size as needed */
     line-height: 1;
-    /* Helps with vertical alignment of stars */
 }
 
 
-/* You had .title-wrap, .name, .position previously.
-   Assuming you've adjusted your Liquid to put .profile-name and .star-rating directly
-   under .profile-block as per the HTML you provided in previous turn.
-   If .title-wrap still wraps name and rating, adjust it: */
+/* ==========================================================================
+   Legacy / Unused Classes (Example)
+   ========================================================================== */
 
-.custom-testimonials .profile-block .title-wrap {
-    display: flex;
-    flex-direction: column;
-    /* Stack children (name and rating) vertically */
-    align-items: center;
-    /* Center text within title-wrap */
-    padding: 0;
-    /* Remove padding if name and stars are centered by profile-block */
-}
 
-.custom-testimonials .profile-block .title-wrap p {
-    margin: 0;
-    /* Reset margins for paragraphs inside title-wrap */
-}
-
-.custom-testimonials .content-container .button {
-    margin: 0 40px 20px;
-}
-
-.custom-testimonials .content-container .blank-btn-container {
-    height: 40px;
-    margin: 0 40px 20px;
-}
+/* The styles for .carousel, .carousel-cell, etc., were removed
+   as they did not appear to be used in the provided HTML structure.
+   If they are needed, they can be re-integrated here. */

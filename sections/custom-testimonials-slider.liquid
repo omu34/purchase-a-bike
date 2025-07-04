@@ -39,11 +39,10 @@ padding-bottom: {{ section.settings.padding_bottom }}px;
       <h6 class="caption-text">{{ section.settings.caption_text }}</h6>
     </div>
     {%- endunless -%}
-  {% comment %} </div> {% endcomment %}
+</div>
 
 
-<div class="testimonial-slider"
-  data-flickity='{ "autoPlay": {{ section.settings.auto_play | times: 1000 | default: 0 }} }'>
+<div class="testimonial-slider">
 
   {% for block in section.blocks %}
   <div class="testimonial-slide">
@@ -81,7 +80,7 @@ padding-bottom: {{ section.settings.padding_bottom }}px;
   {% endfor %}
 
 </div>
-</div>
+
 
 
 {% schema %}
