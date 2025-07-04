@@ -16,18 +16,3 @@ document.addEventListener("DOMContentLoaded", function() {
         });
     });
 });
-
-
-
-// const carousels = document.querySelectorAll(".carousel")
-// let autoPlay = Number(elem.dataset.autoplay);
-
-// const fikty = new Flickity(elem, {
-//     cellAlign: "left",
-//     contain: true,
-//     wrapAround: true,
-//     autoPlay: autoPlay,
-//     pageDots: false,
-//     fullscreen: true,
-//     pauseAutoPlayOnHover: false
-// });
