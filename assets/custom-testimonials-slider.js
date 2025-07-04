@@ -1,24 +1,18 @@
-// document.addEventListener('DOMContentLoaded', function() {
-//     // Assume there is just one single slider on the page with the class 'testimonial-slider'
-//     const sliderElement = document.querySelector('.testimonial-slider');
+document.addEventListener("DOMContentLoaded", function() {
+    const sliders = document.querySelectorAll(".testimonial-slider");
 
-//     if (sliderElement) {
-//         // Initialize Flickity with the specified configurations
-//         const flkty = new Flickity(sliderElement, {
-//             // navigation dots should be disabled
-//             pageDots: false,
+    sliders.forEach((slider) => {
+        let autoPlay = Number(slider.dataset.autoplay);
+        if (autoPlay === 0) autoPlay = false;
 
-//             // no autoplay (already handled by data-flickity attribute, but explicit for JS config)
-//             autoPlay: false,
-
-//             // infinite loop
-//             wrapAround: true,
-
-//             // the slides or cells should be aligned to the left side on initialization.
-//             cellAlign: 'left',
-
-//             // pauseAutoPlayOnHover: false (already set to false by autoPlay: false, but explicit if autoPlay were true)
-//             pauseAutoPlayOnHover: false
-//         });
-//     }
-// });
+        new Flickity(slider, {
+            cellAlign: "left",
+            contain: true,
+            wrapAround: true,
+            autoPlay: autoPlay,
+            pageDots: false,
+            fullscreen: true,
+            pauseAutoPlayOnHover: false
+        });
+    });
+});
