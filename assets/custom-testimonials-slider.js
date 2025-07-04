@@ -1,23 +1,19 @@
 document.addEventListener("DOMContentLoaded", function() {
     const sliders = document.querySelectorAll(".testimonial-slider");
 
-    sliders.forEach((slider, index) => {
+    sliders.forEach((slider) => {
         let autoPlay = Number(slider.dataset.autoplay);
-        if (!autoPlay || autoPlay === 0) autoPlay = false;
+        if (autoPlay === 0) autoPlay = false;
 
-        const delay = index * 1000; // Stagger start by 300ms per slider
-
-        setTimeout(() => {
-            new Flickity(slider, {
-                cellAlign: "left",
-                contain: true,
-                wrapAround: true,
-                autoPlay: autoPlay,
-                pageDots: false,
-                fullscreen: true,
-                pauseAutoPlayOnHover: false
-            });
-        }, delay);
+        new Flickity(slider, {
+            cellAlign: "left",
+            contain: true,
+            wrapAround: true,
+            autoPlay: autoPlay,
+            pageDots: false,
+            fullscreen: true,
+            pauseAutoPlayOnHover: false
+        });
     });
 });
 
