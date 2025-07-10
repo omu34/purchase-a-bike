@@ -112,27 +112,23 @@
         "image_np6cpE": {
           "type": "image",
           "settings": {
-            "image": "shopify://shop_images/3._bike_riding.webp"
+            "image": "shopify://shop_images/collage_1.jpg"
           }
         },
         "image_jXzY8e": {
           "type": "image",
           "settings": {
-            "image": "shopify://shop_images/1._bike_front_view.webp"
+            "image": "shopify://shop_images/collage_2.jpg"
           }
         },
         "image_Ac9GfX": {
           "type": "image",
           "settings": {
-            "image": "shopify://shop_images/2._bike_close_up.webp"
+            "image": "shopify://shop_images/collage_3.jpg"
           }
         }
       },
-      "block_order": [
-        "image_np6cpE",
-        "image_jXzY8e",
-        "image_Ac9GfX"
-      ],
+      "block_order": ["image_np6cpE", "image_jXzY8e", "image_Ac9GfX"],
       "settings": {
         "heading": "",
         "heading_size": "h1",
