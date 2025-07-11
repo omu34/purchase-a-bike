@@ -112,23 +112,27 @@
         "image_np6cpE": {
           "type": "image",
           "settings": {
-            "image": "shopify://shop_images/collage_1.jpg"
+            "image": "shopify://shop_images/3._bike_riding.webp"
           }
         },
         "image_jXzY8e": {
           "type": "image",
           "settings": {
-            "image": "shopify://shop_images/collage_2.jpg"
+            "image": "shopify://shop_images/3a9c85ad-b1d4-4e76-bcd3-765971613ece.png"
           }
         },
         "image_Ac9GfX": {
           "type": "image",
           "settings": {
-            "image": "shopify://shop_images/collage_3.jpg"
+            "image": "shopify://shop_images/1_-_journey.webp"
           }
         }
       },
-      "block_order": ["image_np6cpE", "image_jXzY8e", "image_Ac9GfX"],
+      "block_order": [
+        "image_np6cpE",
+        "image_jXzY8e",
+        "image_Ac9GfX"
+      ],
       "settings": {
         "heading": "",
         "heading_size": "h1",

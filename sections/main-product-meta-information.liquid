@@ -289,22 +289,22 @@
             }
             //subscribe to variant changes and update UI based on new selection
             //...
-            document.addEventListener('afterVariantChange', event => {
+            // document.addEventListener('afterVariantChange', event => {
               
-              updateUI(event.detail.newVariant.option1)
-            })
+            //   updateUI(event.detail.newVariant.option1)
+            // })
 
             // Subscribe to variant change event
-            // document.addEventListener('afterVariantChange', event => {
-            //   const newVariant = event.detail.newVariant.option1;
-            //   console.log("Variant changed to:", newVariant);
-            //   updateUI(newVariant);
-            // });
+            document.addEventListener('afterVariantChange', (event) => {
+              const newVariant = event.detail.newVariant.option1;
+              console.log("Variant changed to:", newVariant);
+              updateUI(newVariant);
+            })
 
 
             //initialize on pageload
 
-            const initialVariantOption = document.querySelector('#meta-information-table').dataset.initialVariantOption;
+            const initialVariantOption = document.querySelector('#meta-information-table').dataset
             updateUI(initialVariantOption);
           </script>
 
