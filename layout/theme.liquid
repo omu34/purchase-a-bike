@@ -253,26 +253,12 @@
 
     {{ 'base.css' | asset_url | stylesheet_tag }}
 
-    {%- if settings.type_body_font and settings.type_body_font != blank and settings.type_body_font.system? == false -%}
-  <link
-    rel="preload"
-    as="font"
-    href="{{ settings.type_body_font | font_url }}"
-    type="font/woff2"
-    crossorigin
-  >
-{%- endif -%}
-
-{%- if settings.type_header_font and settings.type_header_font != blank and settings.type_header_font.system? == false -%}
-  <link
-    rel="preload"
-    as="font"
-    href="{{ settings.type_header_font | font_url }}"
-    type="font/woff2"
-    crossorigin
-  >
-{%- endif -%}
-
+    {%- unless settings.type_body_font.system? -%}
+      <link rel="preload" as="font" href="{{ settings.type_body_font | font_url }}" type="font/woff2" crossorigin>
+    {%- endunless -%}
+    {%- unless settings.type_header_font.system? -%}
+      <link rel="preload" as="font" href="{{ settings.type_header_font | font_url }}" type="font/woff2" crossorigin>
+    {%- endunless -%}
 
     {%- if localization.available_countries.size > 1 or localization.available_languages.size > 1 -%}
       {{ 'component-localization-form.css' | asset_url | stylesheet_tag: preload: true }}
@@ -297,8 +283,6 @@
   </head>
 
   <body class="gradient{% if settings.animations_hover_elements != 'none' %} animate--hover-{{ settings.animations_hover_elements }}{% endif %}">
-    
-
     <a class="skip-to-content-link button visually-hidden" href="#MainContent">
       {{ 'accessibility.skip_to_text' | t }}
     </a>
@@ -366,7 +350,54 @@
       <script src="{{ 'predictive-search.js' | asset_url }}" defer="defer"></script>
     {%- endif -%}
     
-    
+    <script src="{{ 'shopify-app-theme.js' | asset_url }}" defer="defer"></script>
+    <script src="{{ 'global.js' | asset_url }}" defer="defer"></script>
+    {%- if settings.animations_reveal_on_scroll -%}
+      <script src="{{ 'animations.js' | asset_url }}" defer="defer"></script>
+    {%- endif -%}
+    <script src="{{ 'pubsub.js' | asset_url }}" defer="defer"></script>
+    <script src="{{ 'shopify-app-theme-animations.js' | asset_url }}" defer="defer"></script>
+    <script src="{{ 'shopify-app-theme-utilities.js' | asset_url }}" defer="defer"></script>
+    <script src="{{ 'shopify-app-theme-components.js' | asset_url }}" defer="defer"></script>
+    <script src="{{ 'shopify-app-theme-sections.js' | asset_url }}" defer="defer"></script>
+    <script src="{{ 'shopify-app-theme-layout.js' | asset_url }}" defer="defer"></script>
+    <script src="{{ 'shopify-app-theme-product.js' | asset_url }}" defer="defer"></script>
+
+    <script src="{{ 'shopify-app-theme-product-variant-selectors.js' | asset_url }}" defer="defer"></script>
+
+    <script src="{{ 'shopify-app-theme-product-variant-pills.js' | asset_url }}" defer="defer"></script>
+
+    <script src="{{ 'shopify-app-theme-product-variant-pills-with-image.js' | asset_url }}" defer="defer"></script>
+
+    <script src="{{ 'shopify-app-theme-product-variant-pills-with-image-and-title.js' | asset_url }}" defer="defer"></script>
+
+    <script src="{{ 'shopify-app-theme-product-variant-pills-with-image-and-title-and-price.js' | asset_url }}" defer="defer"></script>
+
+    <script src="{{ 'shopify-app-theme-product-variant-pills-with-image-and-title-and-price-and-compare-at-price.js' | asset_url }}" defer="defer"></script>
+
+    <script src="{{ 'shopify-app-theme-product-variant-pills-with-image-and-title-and-price-and-compare-at-price-with-variant-selectors.js' | asset_url }}" defer="defer"></script>
+
+    <script src="{{ 'shopify-app-theme-product-variant-pills-with-image-and-title-and-price-and-compare-at-price-with-variant-selectors-and-add-to-cart.js' | asset_url }}" defer="defer"></script>
+
+    <script src="{{ 'shopify-app-theme-product-variants-with-image.js' | asset_url }}" defer="defer"></script>
+
+    <script src="{{ 'shopify-app-theme-product-variants-with-image-and-title.js' | asset_url }}" defer="defer"></script>
+
+    <script src="{{ 'shopify-app-theme-product-variants-with-image-and-title-and-price.js' | asset_url }}" defer="defer"></script>
+
+    <script src="{{ 'shopify-app-theme-product-variants-with-image-and-title-and-price-and-compare-at-price.js' | asset_url }}" defer="defer"></script>
+
+    <script src="{{ 'shopify-app-theme-product-variants-with-image-and-title-and-price-and-compare-at-price-with-variant-selectors.js' | asset_url }}" defer="defer"></script>
+
+    <script src="{{ 'shopify-app-theme-product-variants-with-image-and-title-and-price-and-compare-at-price-with-variant-selectors-and-add-to-cart.js' | asset_url }}" defer="defer"></script>
+
+    <script src="{{ 'shopify-app-theme-product-variants-with-image-and-title-and-price-and-compare-at-price-with-variant-selectors-and-add-to-cart-and-buy-button.js' | asset_url }}" defer="defer"></script>
+
+    <script src="{{ 'shopify-app-theme-product-variants-with-image-and-title-and-price-and-compare-at-price-with-variant-selectors-and-add-to-cart-and-buy-button-and-quantity-selector.js' | asset_url }}" defer="defer"></script>
+
+    <script src="{{ 'shopify-app-theme-product-variants-with-image-and-title-and-price-and-compare-at-price-with-variant-selectors-and-add-to-cart-and-buy-button-and-quantity-selector-and-variant-pills.js' | asset_url }}" defer="defer"></script>
+
+    <script src="{{ 'shopify-app-theme-product-variants-with-image-and-title-and-price-and-compare-at-price-with-variant-selectors-and-add-to-cart-and-buy-button-and-quantity-selector-and-variant-pills-with-image.js' | asset_url }}" defer="defer"></script>
 
   </body>
 </html>
