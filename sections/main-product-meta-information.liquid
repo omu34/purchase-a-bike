@@ -267,15 +267,16 @@
                 }
                 </script>
 
-           <script>
-            const variantMetaData = JSON.parse(document.querySelector('#variant_meta_information').innerHTML);
-            console.log("parsed variantMetaData", variantMetaData)
+          <script>
+  const variantMetaData = JSON.parse(document.querySelector('#variant_meta_information').textContent);
 
-            const weightTxt = document.querySelector('#meta-information-weight');
-            const rangeTxt = document.querySelector('#meta-information-range');
-            const speedTxt = document.querySelector('#meta-information-speed');
-            const batteryTxt = document.querySelector('#meta-information-battery');
-            const breaksTxt = document.querySelector('#meta-information-breaks');
+  const elementsToUpdate = {
+    weight: document.querySelector('#meta-information-weight'),
+    range: document.querySelector('#meta-information-range'),
+    speed: document.querySelector('#meta-information-speed'),
+    battery: document.querySelector('#meta-information-battery'),
+    breaks: document.querySelector('#meta-information-breaks')
+  };
 
             function updateUI(variantOption) {
               // variantMetaData['Electric'].weightTxt
@@ -289,24 +290,29 @@
             }
             //subscribe to variant changes and update UI based on new selection
             //...
-            // document.addEventListener('afterVariantChange', event => {
+            document.addEventListener('afterVariantChange', event => {
               
-            //   updateUI(event.detail.newVariant.option1)
-            // })
-
-            // Subscribe to variant change event
-            document.addEventListener('afterVariantChange', (event) => {
-              const newVariant = event.detail.newVariant.option1;
-              console.log("Variant changed to:", newVariant);
-              updateUI(newVariant);
+              updateUI(event.detail.newVariant.option1)
             })
 
+            // Subscribe to variant change event
+            // document.addEventListener('afterVariantChange', event => {
+            //   const newVariant = event.detail.newVariant.option1;
+            //   console.log("Variant changed to:", newVariant);
+            //   updateUI(newVariant);
+            // });
 
-            //initialize on pageload
+  // Initialize on page load
+  const metaTable = document.querySelector('#meta-information-table');
+  // Use getAttribute for robust access to data attributes, especially if names are mixed case
+  const initialVariantOption = metaTable ? metaTable.getAttribute('data-initialvariantoption') : null;
 
-            const initialVariantOption = document.querySelector('#meta-information-table').dataset.initialVariantOption;
-            updateUI(initialVariantOption);
-          </script>
+  if (initialVariantOption) {
+    updateUI(initialVariantOption);
+  } else {
+    console.warn('Initial variant option not found on #meta-information-table.');
+  }
+</script>
 
           {%- when 'quantity_selector' -%}
           <div id="Quantity-Form-{{ section.id }}"
