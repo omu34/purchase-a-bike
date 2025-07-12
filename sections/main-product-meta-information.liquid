@@ -213,27 +213,30 @@
               </summary>
 
 
-<style>
-  .variant-btn.active {
-    background-color: #000;
-    color: #fff;
-  }
-</style>
+              <style>
+                .variant-btn.active {
+                  background-color: #000;
+                  color: #fff;
+                }
+              </style>
+              <style>
+                .variant-btn.active {
+                  background-color: #000;
+                  color: #fff;
+                  border: 1px solid #000;
+                }
+              </style>
+
 
 
 
 
               <div class="accordion__content rte" id="ProductAccordion-{{ block.id }}-{{ section.id }}">
 
-
-
-<div id="variant-buttons">
-  <button type="button" class="variant-btn" data-variant="Regular">Regular</button>
-  <button type="button" class="variant-btn" data-variant="Electric">Electric</button>
-</div>
-
-
-
+                <div id="variant-buttons">
+                  <button type="button" class="variant-btn" data-variant="Regular">Regular</button>
+                  <button type="button" class="variant-btn" data-variant="Electric">Electric</button>
+                </div>
 
                 <table id='meta-information-table'
                   data-initialvariantoption='{{product.selected_or_first_available_variant.option1}}'
@@ -344,30 +347,30 @@
               }
 
 
-// Add event listeners for manual variant buttons
-  document.querySelectorAll('.variant-btn').forEach(btn => {
-    btn.addEventListener('click', () => {
-      const selectedVariant = btn.getAttribute('data-variant');
-      updateUI(selectedVariant);
+          // Add event listeners for manual variant buttons
+            document.querySelectorAll('.variant-btn').forEach(btn => {
+              btn.addEventListener('click', () => {
+                const selectedVariant = btn.getAttribute('data-variant');
+                updateUI(selectedVariant);
 
-      // Optional: simulate variant selection event if needed by other Shopify scripts
-      const simulatedEvent = new CustomEvent('afterVariantChange', {
-        detail: {
-          newVariant: {
-            option1: selectedVariant
-          }
-        }
-      });
-      document.dispatchEvent(simulatedEvent);
-    });
-  });
+                // Optional: simulate variant selection event if needed by other Shopify scripts
+                const simulatedEvent = new CustomEvent('afterVariantChange', {
+                  detail: {
+                    newVariant: {
+                      option1: selectedVariant
+                    }
+                  }
+                });
+                document.dispatchEvent(simulatedEvent);
+              });
+            });
 
 
-// In the event listener:
-document.querySelectorAll('.variant-btn').forEach(btn => {
-  btn.classList.remove('active');
-});
-btn.classList.add('active');
+            // In the event listener:
+            document.querySelectorAll('.variant-btn').forEach(btn => {
+              btn.classList.remove('active');
+            });
+            btn.classList.add('active');
 
           </script>
 
