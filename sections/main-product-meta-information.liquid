@@ -267,46 +267,58 @@
                 }
                 </script>
 
-           <script>
-            const variantMetaData = JSON.parse(document.querySelector('#variant_meta_information').innerHTML);
-            console.log("parsed variantMetaData", variantMetaData)
+          <script>
+  const variantMetaData = JSON.parse(document.querySelector('#variant_meta_information').textContent);
 
-            const weightTxt = document.querySelector('#meta-information-weight');
-            const rangeTxt = document.querySelector('#meta-information-range');
-            const speedTxt = document.querySelector('#meta-information-speed');
-            const batteryTxt = document.querySelector('#meta-information-battery');
-            const breaksTxt = document.querySelector('#meta-information-breaks');
+  const elementsToUpdate = {
+    weight: document.querySelector('#meta-information-weight'),
+    range: document.querySelector('#meta-information-range'),
+    speed: document.querySelector('#meta-information-speed'),
+    battery: document.querySelector('#meta-information-battery'),
+    breaks: document.querySelector('#meta-information-breaks')
+  };
 
-            function updateUI(variantOption) {
-              // variantMetaData['Electric'].weightTxt
-              // variantMetaData['Regular'].weightTxt
-              weightTxt.innerHTML= variantMetadata[variantOption].weight;
-              rangeTxt.innerHTML = variantMetadata[variantOption].range;
-              speedTxt.innerHTML = variantMetadata[variantOption].speed;
-              batteryTxt.innerHTML = variantMetadata[variantOption].battery;
-              breaksTxt.innerHTML = variantMetadata[variantOption].breaks;
+  function updateUI(variantOption) {
+    if (!variantMetaData[variantOption]) {
+      console.warn(`Variant metadata for "${variantOption}" not found.`);
+      // Optionally clear the fields if the variant data isn't found
+      for (const key in elementsToUpdate) {
+        if (elementsToUpdate.hasOwnProperty(key)) {
+          elementsToUpdate[key].textContent = '';
+        }
+      }
+      return;
+    }
 
-            }
-            //subscribe to variant changes and update UI based on new selection
-            //...
-            // document.addEventListener('afterVariantChange', event => {
-              
-            //   updateUI(event.detail.newVariant.option1)
-            // })
+    const data = variantMetaData[variantOption];
+    for (const key in elementsToUpdate) {
+      if (elementsToUpdate.hasOwnProperty(key) && data.hasOwnProperty(key)) {
+        elementsToUpdate[key].textContent = data[key];
+      }
+    }
+  }
 
-            // Subscribe to variant change event
-            document.addEventListener('afterVariantChange', (event) => {
-              const newVariant = event.detail.newVariant.option1;
-              console.log("Variant changed to:", newVariant);
-              updateUI(newVariant);
-            })
+  // Subscribe to variant changes and update UI based on new selection
+document.addEventListener('afterVariantChange', event => {
+  // Ensure event.detail.newVariant.option1 exists before calling updateUI
+  if (event.detail && event.detail.newVariant && event.detail.newVariant.option1) {
+    updateUI(event.detail.newVariant.option1);
+  } else {
+    console.warn('afterVariantChange event detail or newVariant.option1 is missing.');
+  }
+});
 
+  // Initialize on page load
+  const metaTable = document.querySelector('#meta-information-table');
+  // Use getAttribute for robust access to data attributes, especially if names are mixed case
+  const initialVariantOption = metaTable ? metaTable.getAttribute('data-initialvariantoption') : null;
 
-            //initialize on pageload
-
-            const initialVariantOption = document.querySelector('#meta-information-table').dataset
-            updateUI(initialVariantOption);
-          </script>
+  if (initialVariantOption) {
+    updateUI(initialVariantOption);
+  } else {
+    console.warn('Initial variant option not found on #meta-information-table.');
+  }
+</script>
 
           {%- when 'quantity_selector' -%}
           <div id="Quantity-Form-{{ section.id }}"
