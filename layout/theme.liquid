@@ -29,8 +29,9 @@
     {% render 'meta-tags' %}
 
     <script src="{{ 'constants.js' | asset_url }}" defer="defer"></script>
-    <script src="{{ 'pubsub.js' | asset_url }}" defer="defer"></script>
     <script src="{{ 'global.js' | asset_url }}" defer="defer"></script>
+<script src="{{ 'animations.js' | asset_url }}" defer="defer"></script>
+<script src="{{ 'pubsub.js' | asset_url }}" defer="defer"></script>
     {%- if settings.animations_reveal_on_scroll -%}
       <script src="{{ 'animations.js' | asset_url }}" defer="defer"></script>
     {%- endif -%}
@@ -363,41 +364,7 @@
     <script src="{{ 'shopify-app-theme-layout.js' | asset_url }}" defer="defer"></script>
     <script src="{{ 'shopify-app-theme-product.js' | asset_url }}" defer="defer"></script>
 
-    <script src="{{ 'shopify-app-theme-product-variant-selectors.js' | asset_url }}" defer="defer"></script>
-
-    <script src="{{ 'shopify-app-theme-product-variant-pills.js' | asset_url }}" defer="defer"></script>
-
-    <script src="{{ 'shopify-app-theme-product-variant-pills-with-image.js' | asset_url }}" defer="defer"></script>
-
-    <script src="{{ 'shopify-app-theme-product-variant-pills-with-image-and-title.js' | asset_url }}" defer="defer"></script>
-
-    <script src="{{ 'shopify-app-theme-product-variant-pills-with-image-and-title-and-price.js' | asset_url }}" defer="defer"></script>
-
-    <script src="{{ 'shopify-app-theme-product-variant-pills-with-image-and-title-and-price-and-compare-at-price.js' | asset_url }}" defer="defer"></script>
-
-    <script src="{{ 'shopify-app-theme-product-variant-pills-with-image-and-title-and-price-and-compare-at-price-with-variant-selectors.js' | asset_url }}" defer="defer"></script>
-
-    <script src="{{ 'shopify-app-theme-product-variant-pills-with-image-and-title-and-price-and-compare-at-price-with-variant-selectors-and-add-to-cart.js' | asset_url }}" defer="defer"></script>
-
-    <script src="{{ 'shopify-app-theme-product-variants-with-image.js' | asset_url }}" defer="defer"></script>
-
-    <script src="{{ 'shopify-app-theme-product-variants-with-image-and-title.js' | asset_url }}" defer="defer"></script>
-
-    <script src="{{ 'shopify-app-theme-product-variants-with-image-and-title-and-price.js' | asset_url }}" defer="defer"></script>
-
-    <script src="{{ 'shopify-app-theme-product-variants-with-image-and-title-and-price-and-compare-at-price.js' | asset_url }}" defer="defer"></script>
-
-    <script src="{{ 'shopify-app-theme-product-variants-with-image-and-title-and-price-and-compare-at-price-with-variant-selectors.js' | asset_url }}" defer="defer"></script>
-
-    <script src="{{ 'shopify-app-theme-product-variants-with-image-and-title-and-price-and-compare-at-price-with-variant-selectors-and-add-to-cart.js' | asset_url }}" defer="defer"></script>
-
-    <script src="{{ 'shopify-app-theme-product-variants-with-image-and-title-and-price-and-compare-at-price-with-variant-selectors-and-add-to-cart-and-buy-button.js' | asset_url }}" defer="defer"></script>
-
-    <script src="{{ 'shopify-app-theme-product-variants-with-image-and-title-and-price-and-compare-at-price-with-variant-selectors-and-add-to-cart-and-buy-button-and-quantity-selector.js' | asset_url }}" defer="defer"></script>
-
-    <script src="{{ 'shopify-app-theme-product-variants-with-image-and-title-and-price-and-compare-at-price-with-variant-selectors-and-add-to-cart-and-buy-button-and-quantity-selector-and-variant-pills.js' | asset_url }}" defer="defer"></script>
-
-    <script src="{{ 'shopify-app-theme-product-variants-with-image-and-title-and-price-and-compare-at-price-with-variant-selectors-and-add-to-cart-and-buy-button-and-quantity-selector-and-variant-pills-with-image.js' | asset_url }}" defer="defer"></script>
+    
 
   </body>
 </html>
