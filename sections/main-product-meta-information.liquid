@@ -211,8 +211,32 @@
                 </div>
                 {% render 'icon-caret' %}
               </summary>
+
+
+              <style>
+                .variant-btn.active {
+                  background-color: #000;
+                  color: #fff;
+                }
+              </style>
+              <style>
+                .variant-btn.active {
+                  background-color: #000;
+                  color: #fff;
+                  border: 1px solid #000;
+                }
+              </style>
+
+
+
+
+
               <div class="accordion__content rte" id="ProductAccordion-{{ block.id }}-{{ section.id }}">
 
+                <div id="variant-buttons">
+                  <button type="button" class="variant-btn" data-variant="Regular">Regular</button>
+                  <button type="button" class="variant-btn" data-variant="Electric">Electric</button>
+                </div>
 
                 <table id='meta-information-table'
                   data-initialvariantoption='{{product.selected_or_first_available_variant.option1}}'
@@ -267,46 +291,90 @@
                 }
                 </script>
 
-           <script>
-            const variantMetaData = JSON.parse(document.querySelector('#variant_meta_information').innerHTML);
-            console.log("parsed variantMetaData", variantMetaData)
+          <script>
+              // Parse the JSON data containing variant information
+              const variantMetaData = JSON.parse(document.querySelector('#variant_meta_information').textContent);
 
-            const weightTxt = document.querySelector('#meta-information-weight');
-            const rangeTxt = document.querySelector('#meta-information-range');
-            const speedTxt = document.querySelector('#meta-information-speed');
-            const batteryTxt = document.querySelector('#meta-information-battery');
-            const breaksTxt = document.querySelector('#meta-information-breaks');
+              // Store the table cell elements that will be updated
+              const elementsToUpdate = {
+                weight: document.querySelector('#meta-information-weight'),
+                range: document.querySelector('#meta-information-range'),
+                speed: document.querySelector('#meta-information-speed'),
+                battery: document.querySelector('#meta-information-battery'),
+                breaks: document.querySelector('#meta-information-breaks')
+              };
 
-            function updateUI(variantOption) {
-              // variantMetaData['Electric'].weightTxt
-              // variantMetaData['Regular'].weightTxt
-              weightTxt.innerHTML= variantMetadata[variantOption].weight;
-              rangeTxt.innerHTML = variantMetadata[variantOption].range;
-              speedTxt.innerHTML = variantMetadata[variantOption].speed;
-              batteryTxt.innerHTML = variantMetadata[variantOption].battery;
-              breaksTxt.innerHTML = variantMetadata[variantOption].breaks;
+              /**
+               * Updates the table with the information for the selected variant.
+               * @param {string} variantOption - The name of the selected variant (e.g., "Regular" or "Electric").
+               */
+              function updateUI(variantOption) {
+                // Check if the selected variant exists in our data
+                if (variantMetaData[variantOption]) {
+                  const variantData = variantMetaData[variantOption];
+                  // Update the text content of each table cell with the corresponding data
+                  elementsToUpdate.weight.textContent = variantData.weight;
+                  elementsToUpdate.range.textContent = variantData.range;
+                  elementsToUpdate.speed.textContent = variantData.speed;
+                  elementsToUpdate.battery.textContent = variantData.battery;
+                  elementsToUpdate.breaks.textContent = variantData.breaks;
+                } else {
+                  console.warn(`Variant data for "${variantOption}" not found.`);
+                }
+              }
 
-            }
-            //subscribe to variant changes and update UI based on new selection
-            //...
-            document.addEventListener('afterVariantChange', event => {
-              
-              updateUI(event.detail.newVariant.option1)
-            })
+              // Listen for the custom 'afterVariantChange' event
+              document.addEventListener('afterVariantChange', event => {
+                // When the variant changes, get the new option and update the UI
+   
+                if (event.detail && event.detail.newVariant && event.detail.newVariant.option1) {
+                  updateUI(event.detail.newVariant.option1);
+                }
+              });
 
-            // Subscribe to variant change event
-            // document.addEventListener('afterVariantChange', event => {
-            //   const newVariant = event.detail.newVariant.option1;
-            //   console.log("Variant changed to:", newVariant);
-            //   updateUI(newVariant);
-            // });
+              // --- Initial UI setup on page load ---
+              // Find the meta information table
+              const metaTable = document.querySelector('#meta-information-table');
+              // Get the initial variant from the 'data-initialvariantoption' attribute
+              const initialVariantOption = metaTable ? metaTable.getAttribute('data-initialvariantoption') : null;
+
+              // If an initial variant is set, update the UI right away
+              if (initialVariantOption) {
+                updateUI(initialVariantOption);
+              } else {
+                // If not, log a warning to the console
+                console.warn('Initial variant option not found on #meta-information-table.');
+              }
 
 
-            //initialize on pageload
+          // Add event listeners for manual variant buttons
+            document.querySelectorAll('.variant-btn').forEach(btn => {
+              btn.addEventListener('click', () => {
+                const selectedVariant = btn.getAttribute('data-variant');
+                updateUI(selectedVariant);
 
-            const initialVariantOption = document.querySelector('#meta-information-table').dataset.initialVariantOption;
-            updateUI(initialVariantOption);
+                // Optional: simulate variant selection event if needed by other Shopify scripts
+                const simulatedEvent = new CustomEvent('afterVariantChange', {
+                  detail: {
+                    newVariant: {
+                      option1: selectedVariant
+                    }
+                  }
+                });
+                document.dispatchEvent(simulatedEvent);
+              });
+            });
+
+
+            // In the event listener:
+            document.querySelectorAll('.variant-btn').forEach(btn => {
+              btn.classList.remove('active');
+            });
+            btn.classList.add('active');
+
           </script>
+
+          
 
           {%- when 'quantity_selector' -%}
           <div id="Quantity-Form-{{ section.id }}"

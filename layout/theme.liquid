@@ -29,8 +29,9 @@
     {% render 'meta-tags' %}
 
     <script src="{{ 'constants.js' | asset_url }}" defer="defer"></script>
-    <script src="{{ 'pubsub.js' | asset_url }}" defer="defer"></script>
     <script src="{{ 'global.js' | asset_url }}" defer="defer"></script>
+<script src="{{ 'animations.js' | asset_url }}" defer="defer"></script>
+<script src="{{ 'pubsub.js' | asset_url }}" defer="defer"></script>
     {%- if settings.animations_reveal_on_scroll -%}
       <script src="{{ 'animations.js' | asset_url }}" defer="defer"></script>
     {%- endif -%}
@@ -350,16 +351,20 @@
       <script src="{{ 'predictive-search.js' | asset_url }}" defer="defer"></script>
     {%- endif -%}
     
-    {% comment %} {% if template == 'product' %}
-      <script>
-          document.addEventListener('afterVariantChange', handleVariantChange)
+    <script src="{{ 'shopify-app-theme.js' | asset_url }}" defer="defer"></script>
+    <script src="{{ 'global.js' | asset_url }}" defer="defer"></script>
+    {%- if settings.animations_reveal_on_scroll -%}
+      <script src="{{ 'animations.js' | asset_url }}" defer="defer"></script>
+    {%- endif -%}
+    <script src="{{ 'pubsub.js' | asset_url }}" defer="defer"></script>
+    <script src="{{ 'shopify-app-theme-animations.js' | asset_url }}" defer="defer"></script>
+    <script src="{{ 'shopify-app-theme-utilities.js' | asset_url }}" defer="defer"></script>
+    <script src="{{ 'shopify-app-theme-components.js' | asset_url }}" defer="defer"></script>
+    <script src="{{ 'shopify-app-theme-sections.js' | asset_url }}" defer="defer"></script>
+    <script src="{{ 'shopify-app-theme-layout.js' | asset_url }}" defer="defer"></script>
+    <script src="{{ 'shopify-app-theme-product.js' | asset_url }}" defer="defer"></script>
 
-          function handleVariantChange(event){
-            console.log('New variant:', event.detail.newVariant)
-          }
-          
-      </script>
-    {% endif %} {% endcomment %}
+    
 
   </body>
 </html>
