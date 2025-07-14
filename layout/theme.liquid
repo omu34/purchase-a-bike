@@ -363,7 +363,14 @@
     <script src="{{ 'shopify-app-theme-sections.js' | asset_url }}" defer="defer"></script>
     <script src="{{ 'shopify-app-theme-layout.js' | asset_url }}" defer="defer"></script>
     <script src="{{ 'shopify-app-theme-product.js' | asset_url }}" defer="defer"></script>
-
+<script src="" defer="defer">
+  window.addEventListener('DOMContentLoaded', function () { 
+    subscribe(PUB_SUB_EVENTS.variantChange, handleThatSomeVariantHasChanged);
+    function handleThatSomeVariantHasChanged(data) {
+      console.log(data);
+    }
+    });
+</script>
     
 
   </body>

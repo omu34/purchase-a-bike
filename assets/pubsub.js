@@ -1,23 +1,28 @@
-let subscribers = {};
+let subscribers = {
+
+    //     'afterVariantChange': [handleThatSomeVariantHasChanged,func1,func2],
+
+    // 'productWasAddedToCart': [func1,func2],
+};
 
 function subscribe(eventName, callback) {
-  if (subscribers[eventName] === undefined) {
-    subscribers[eventName] = [];
-  }
+    if (subscribers[eventName] === undefined) {
+        subscribers[eventName] = [];
+    }
 
-  subscribers[eventName] = [...subscribers[eventName], callback];
+    subscribers[eventName] = [...subscribers[eventName], callback];
 
-  return function unsubscribe() {
-    subscribers[eventName] = subscribers[eventName].filter((cb) => {
-      return cb !== callback;
-    });
-  };
+    return function unsubscribe() {
+        subscribers[eventName] = subscribers[eventName].filter((cb) => {
+            return cb !== callback;
+        });
+    };
 }
 
 function publish(eventName, data) {
-  if (subscribers[eventName]) {
-    subscribers[eventName].forEach((callback) => {
-      callback(data);
-    });
-  }
+    if (subscribers[eventName]) {
+        subscribers[eventName].forEach((callback) => {
+            callback(data);
+        });
+    }
 }
